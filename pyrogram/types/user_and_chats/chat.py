@@ -116,6 +116,7 @@ class Chat(Object):
 
         linked_chat (:obj:`~pyrogram.types.Chat`, *optional*):
             The linked discussion group (in case of channels) or the linked channel (in case of supergroups).
+            Returned only in :meth:`~pyrogram.Client.get_chat`.
     """
 
     def __init__(
@@ -870,7 +871,7 @@ class Chat(Object):
             limit (``int``, *optional*):
                 Limits the number of members to be retrieved.
                 Only applicable to supergroups and channels.
-                Defaults to 200, which is also the maximum server limit allowed per method call.
+                Defaults to 200, which is also the maximum server limit allowed per method call [1]_.
 
             query (``str``, *optional*):
                 Query string to filter members based on their display names and usernames.
