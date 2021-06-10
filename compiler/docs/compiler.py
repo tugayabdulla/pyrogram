@@ -144,6 +144,7 @@ def pyrogram_api():
             send_message
             forward_messages
             copy_message
+            copy_media_group
             send_photo
             send_audio
             send_document
@@ -221,6 +222,7 @@ def pyrogram_api():
             set_slow_mode
             mark_chat_unread
             get_chat_event_log
+            get_chat_online_count
         """,
         users="""
         Users
@@ -239,24 +241,26 @@ def pyrogram_api():
         """,
         invite_links="""
         Invite Links
+            get_chat_invite_link
             export_chat_invite_link
             create_chat_invite_link
             edit_chat_invite_link
             revoke_chat_invite_link
             delete_chat_invite_link
-            delete_all_chat_invite_links
-            get_chat_invite_links
-            get_chat_invite_links_count
             get_chat_invite_link_members
             get_chat_invite_link_members_count
+            get_chat_admin_invite_links
+            get_chat_admin_invite_links_count
             get_chat_admins_with_invite_links
+            delete_chat_admin_invite_links
         """,
         contacts="""
         Contacts
-            add_contacts
+            add_contact
+            delete_contacts
+            import_contacts
             get_contacts
             get_contacts_count
-            delete_contacts
         """,
         password="""
         Password
@@ -374,6 +378,7 @@ def pyrogram_api():
             Poll
             PollOption
             Dice
+            VoiceChatScheduled
             VoiceChatStarted
             VoiceChatEnded
             VoiceChatMembersInvited
@@ -390,6 +395,7 @@ def pyrogram_api():
             CallbackQuery
             GameHighScore
             CallbackGame
+            BotCommand
         """,
         input_media="""
         Input Media
@@ -460,10 +466,12 @@ def pyrogram_api():
             Message.copy
             Message.pin
             Message.unpin
+            Message.edit
             Message.edit_text
             Message.edit_caption
             Message.edit_media
             Message.edit_reply_markup
+            Message.reply
             Message.reply_text
             Message.reply_animation
             Message.reply_audio

@@ -22,31 +22,25 @@ from pyrogram import raw
 from pyrogram.scaffold import Scaffold
 
 
-class DeleteAllChatInviteLinks(Scaffold):
-    async def delete_all_chat_invite_links(
-        self,
-        chat_id: Union[int, str],
-        admin_id: Union[int, str],
-    ) -> bool:
-        """Delete all revoked invite links of an administrator.
+class GetChatOnlineCount(Scaffold):
+    async def get_chat_online_count(self, chat_id: Union[int, str]) -> int:
+        """Get the number of members that are currently online in a chat.
 
         Parameters:
             chat_id (``int`` | ``str``):
-                Unique identifier for the target chat or username of the target channel/supergroup
-                (in the format @username).
-
-            admin_id (``int`` | ``str``):
-                Unique identifier (int) or username (str) of the target user.
-                For you yourself you can simply use "me" or "self".
-                For a contact that exists in your Telegram address book you can use his phone number (str).
+                Unique identifier (int) or username (str) of the target chat.
 
         Returns:
-            ``bool``: On success ``True`` is returned.
-        """
+            ``int``: On success, the chat members online count is returned.
 
-        return await self.send(
-            raw.functions.messages.DeleteRevokedExportedChatInvites(
-                peer=await self.resolve_peer(chat_id),
-                admin_id=await self.resolve_peer(admin_id),
+        Example:
+            .. code-block:: python
+
+                online = app.get_chat_online_count(chat_id)
+                print(online)
+        """
+        return (await self.send(
+            raw.functions.messages.GetOnlines(
+                peer=await self.resolve_peer(chat_id)
             )
-        )
+        )).onlines
